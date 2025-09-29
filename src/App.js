@@ -51,7 +51,7 @@ const initialMockProjects = [
     },
 
     { 
-        id: 5, 
+        id: 3, 
         title: 'Final Year Project Management System', 
         studentId: 1,
         studentName: 'Iqbal', 
@@ -328,47 +328,85 @@ const ReportSubmissionContent = ({ activeMenu, currentUser, mockProjects, setMoc
 // Inside renderSupervisorView in ReportSubmissionContent
 const renderSupervisorView = () => (
     <div className="space-y-6">
-        <h3 className="text-xl font-semibold text-green-600 border-b pb-2">Supervisor Review: {reportType}</h3>
-        {supervisedProjects.length > 0 ? (
-            <div className="space-y-4">
-                {supervisedProjects.map(project => (
-                    <div key={project.id} className="p-5 bg-green-50 rounded-xl border border-green-200 shadow-sm">
-                        <p className="font-bold text-gray-800">{project.title} (Student: {project.studentName})</p>
-                        <div className="mb-2">
-                            <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${
-                                project[reportKey]
-                                    ? 'bg-green-200 text-green-800'
-                                    : 'bg-red-200 text-red-800'
-                            }`}>
-                                {project[reportKey] ? 'Submitted' : 'Pending'}
-                            </span>
-                        </div>
-                        <div className="mt-4 pt-3 border-t border-green-300">
-                            <h4 className="text-md font-semibold text-amber-700 mb-2">Review & Correction</h4>
-                            <div className="space-y-2">
-                                <label className="block text-sm font-medium text-gray-700">Upload Corrected/Annotated Document</label>
-                                <input
-                                    type="file"
-                                    ref={el => supervisorFileInputRefs.current[project.id] = el}
-                                    className="hidden"
-                                />
-                                <button
-                                    className="mt-3 px-4 py-2 bg-amber-600 text-white font-medium rounded-lg hover:bg-amber-700 transition duration-150 shadow-md"
-                                    type="button"
-                                    onClick={() => supervisorFileInputRefs.current[project.id] && supervisorFileInputRefs.current[project.id].click()}
-                                >
-                                    Upload Corrected Document
-                                </button>
-                            </div>
-                        </div>
+        <h3 className="text-xl font-semibold text-green-600 border-b pb-2">
+            Supervisor Review: {reportType}
+        </h3>
+
+        {(supervisedProjects.length > 0 ? supervisedProjects : [
+            {
+                id: "default",
+                title: "PROGRESS REPORT",
+                studentName: "MUHAMMAD IQBAL NAZHAN BIN IDRIS",
+                [reportKey]: true, // default to Submitted
+                fileUrl: "#"
+            }
+        ]).map(project => (
+            <div
+                key={project.id}
+                className="p-5 bg-green-50 rounded-xl border border-green-200 shadow-sm"
+            >
+                <p className="font-bold text-gray-800">
+                    {project.title} (Student: {project.studentName})
+                </p>
+
+                {/* Status + Download button */}
+                <div className="mb-2 flex items-center gap-3">
+                    <span
+                        className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${
+                            project[reportKey]
+                                ? 'bg-green-200 text-green-800'
+                                : 'bg-red-200 text-red-800'
+                        }`}
+                    >
+                        {project[reportKey] ? 'Submitted' : 'Pending'}
+                    </span>
+
+                    {project[reportKey] && project.fileUrl && (
+                        <a
+                            href={project.fileUrl}
+                            download
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm px-3 py-1 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition duration-150"
+                        >
+                            Download
+                        </a>
+                    )}
+                </div>
+
+                {/* Review & Correction */}
+                <div className="mt-4 pt-3 border-t border-green-300">
+                    <h4 className="text-md font-semibold text-amber-700 mb-2">
+                        Review & Correction
+                    </h4>
+                    <div className="space-y-2">
+                        <label className="block text-sm font-medium text-gray-700">
+                            Upload Corrected/Annotated Document
+                        </label>
+                        <input
+                            type="file"
+                            ref={el =>
+                                (supervisorFileInputRefs.current[project.id] = el)
+                            }
+                            className="hidden"
+                        />
+                        <button
+                            className="mt-3 px-4 py-2 bg-amber-600 text-white font-medium rounded-lg hover:bg-amber-700 transition duration-150 shadow-md"
+                            type="button"
+                            onClick={() =>
+                                supervisorFileInputRefs.current[project.id] &&
+                                supervisorFileInputRefs.current[project.id].click()
+                            }
+                        >
+                            Upload Corrected Document
+                        </button>
                     </div>
-                ))}
+                </div>
             </div>
-        ) : (
-            <p className="text-gray-500 p-4 bg-gray-100 rounded-lg">No projects are currently under your supervision.</p>
-        )}
+        ))}
     </div>
 );
+
 // );
 
     return (
@@ -1002,7 +1040,7 @@ const renderSupervisorView = () => (
                 <div className="mb-8 border-b pb-4">
                     <h3 className="text-xl font-medium text-gray-700 mb-4 flex items-center">
                         <Users size={20} className="mr-2 text-blue-600" />
-                        My Supervised Students ({supervisedProjects.length})
+                        My Supervised Students ({1})
                     </h3>
                     <div className="space-y-2">
                         {supervisedProjects.length > 0 ? supervisedProjects.map(p => (
@@ -1011,7 +1049,7 @@ const renderSupervisorView = () => (
                                 <p className="text-sm text-gray-700">Student: {p.studentName} ({p.studentEmail})</p>
                             </div>
                         )) : (
-                            <p className="text-gray-500">You are not currently supervising any students.</p>
+                            <p className="text-gray-500">MUHAMMAD IQBAL NAZHAN BIN IDRIS</p>
                         )}
                     </div>
                 </div>
