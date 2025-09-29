@@ -3,7 +3,7 @@ import { LayoutDashboard, FileText, UserCheck, Users, Settings, LogOut, Menu, X,
 
 // Mock database for users (accessible globally within App)
 const initialMockUsers = [
-    { id: 1, name: 'MUHAMMAD IQBAL NAZHAN BIN IDRIS', username: 'asmith', email: 'alice.s@uni.edu', password: 'password123', role: 'Student' },
+    { id: 1, name: 'MUHAMMAD IQBAL NAZHAN BIN IDRIS', username: 'iqbal', email: 'iqbal@unimap.edu.my', password: 'iqbal', role: 'Student' },
     { id: 2, name: 'DR. ZAINI', username: 'zaini', email: 'zaini.d@uni.edu', password: 'securepass', role: 'Supervisor' },
     { id: 3, name: 'NURUL AMINAH BINTI AZRI', username: 'blee', email: 'ben.l@uni.edu', password: 'benpass', role: 'Student' },
     { id: 4, name: 'PROF. AZMAN', username: 'azman', email: 'azman.p@uni.edu', password: 'profpass', role: 'Supervisor' },
