@@ -18,7 +18,7 @@ const initialMockProjects = [
     { 
         id: 1, 
         title: 'Optimizing Neural Network Training', 
-        studentId: 1, 
+        studentId: 6, 
         studentName: 'Alice Smith', 
         studentEmail: 'alice.s@uni.edu', 
         supervisorId: 2, 
@@ -41,6 +41,24 @@ const initialMockProjects = [
         supervisorId: 4, 
         supervisorName: 'Prof. Azman', 
         supervisorEmail: 'azman.p@uni.edu', 
+        examinerId: null, 
+        examinerName: null, 
+        examinerEmail: null,
+        progressReportFile: null,
+        logbookReportFile: null,
+        progressReportSubmitted: false, // <-- add this
+        logbookReportSubmitted: false,  // <-- add this
+    },
+
+    { 
+        id: 5, 
+        title: 'Final Year Project Management System', 
+        studentId: 1,
+        studentName: 'Iqbal', 
+        studentEmail: 'iqbal@unimap.edu.my', 
+        supervisorId: 5, 
+        supervisorName: 'NOOR FAZREEN BINTI BAKAR', 
+        supervisorEmail: 'fazreen@unimap.edu.my', 
         examinerId: null, 
         examinerName: null, 
         examinerEmail: null,
