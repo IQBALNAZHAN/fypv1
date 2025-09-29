@@ -1073,7 +1073,7 @@ const renderSupervisorView = () => (
         handleLogin(authenticatedUser); // Log in with the found user object
       } else {
         // SECURITY FIX: Do not reveal the correct password in the error message.
-        setError(`Invalid credentials for a **${role}** login. Please try the example: ${getRoleExample(role)}`);
+        setError(`Invalid credentials `);
       }
     };
     
