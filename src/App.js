@@ -3,12 +3,12 @@ import { LayoutDashboard, FileText, UserCheck, Users, Settings, LogOut, Menu, X,
 
 // Mock database for users (accessible globally within App)
 const initialMockUsers = [
-    { id: 1, name: 'Alice Smith', username: 'asmith', email: 'alice.s@uni.edu', password: 'password123', role: 'Student' },
-    { id: 2, name: 'Dr. Zaini', username: 'zaini', email: 'zaini.d@uni.edu', password: 'securepass', role: 'Supervisor' },
-    { id: 3, name: 'Ben Lee', username: 'blee', email: 'ben.l@uni.edu', password: 'benpass', role: 'Student' },
-    { id: 4, name: 'Prof. Azman', username: 'azman', email: 'azman.p@uni.edu', password: 'profpass', role: 'Supervisor' },
+    { id: 1, name: 'MUHAMMAD IQBAL NAZHAN BIN IDRIS', username: 'asmith', email: 'alice.s@uni.edu', password: 'password123', role: 'Student' },
+    { id: 2, name: 'DR. ZAINI', username: 'zaini', email: 'zaini.d@uni.edu', password: 'securepass', role: 'Supervisor' },
+    { id: 3, name: 'NURUL AMINAH BINTI AZRI', username: 'blee', email: 'ben.l@uni.edu', password: 'benpass', role: 'Student' },
+    { id: 4, name: 'PROF. AZMAN', username: 'azman', email: 'azman.p@uni.edu', password: 'profpass', role: 'Supervisor' },
     // Adding another Supervisor to act as an available examiner pool
-    { id: 5, name: 'Dr. Chan', username: 'chan', email: 'chan.d@uni.edu', password: 'chanpass', role: 'Supervisor' },
+    { id: 5, name: 'NOOR FAZREEN BINTI BAKAR	', username: 'fazreen', email: 'fazreen@unimap.edu.my', password: 'fazreen', role: 'Supervisor' },
 ];
 
 
