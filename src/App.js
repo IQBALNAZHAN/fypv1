@@ -1165,7 +1165,7 @@ const renderSupervisorView = () => (
 
                     {/* Login Hint */}
                     <div className="text-xs text-gray-500 italic pt-1 pb-2">
-                        Hint: {getRoleExample(role)}
+                        {/* Hint: {getRoleExample(role)} */}
                     </div>
 
                     {/* Sign In Button */}
