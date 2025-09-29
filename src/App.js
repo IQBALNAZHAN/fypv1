@@ -145,7 +145,7 @@ useEffect(() => {
     { name: 'Dashboard', icon: LayoutDashboard, link: '#' },
     { name: 'User Management', icon: Users, link: '#' }, 
     { name: 'Project Assignment', icon: BookOpen, link: '#' }, 
-            { name: 'Submission Overview', icon: FileText, link: '#', roles: ['Admin'] },
+            { name: 'Submission Overview', icon: FileText, link: '#', roles: ['S'] },
 
     { name: 'Examiner Assignment', icon: UserPlus, link: '#' },
         // { name: 'Submission Overview', icon: FileText, link: '#', roles: ['Admin'] },
@@ -282,46 +282,84 @@ const ReportSubmissionContent = ({ activeMenu, currentUser, mockProjects, setMoc
 };
 
     // STUDENT VIEW
-    const renderStudentView = () => (
-        <div className="space-y-6">
-            <h3 className="text-xl font-semibold text-blue-600 border-b pb-2">Student Submission: {reportType}</h3>
-            {studentProject ? (
-                <div className="p-4 bg-blue-50 rounded-lg border border-blue-200 space-y-3">
-                    <p className="font-semibold text-lg text-gray-800">Project: {studentProject.title}</p>
-                    <p className="text-sm text-gray-700">Supervisor: {studentProject.supervisorName}</p>
-                    <hr/>
-                    <div className="space-y-2">
-                        <label className="block text-sm font-medium text-gray-700">Upload Your {reportType} File (.pdf)</label>
-                        <input
-                            type="file"
-                            ref={fileInputRef}
-                            className="hidden"
-                            onChange={handleStudentFileChange}
-                        />
-                        <button
-                            className="mt-3 px-4 py-2 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition duration-150 shadow-md"
-                            type="button"
-                            onClick={() => fileInputRef.current && fileInputRef.current.click()}
-                        >
-                            Upload {reportType}
-                        </button>
-                        <div className="text-xs text-green-700 mt-1">
-                            {studentProject[reportKey] 
-                                ? `Uploaded: ${studentProject[reportKey]}`
-                                : selectedFileName 
-                                    ? `Selected: ${selectedFileName}` 
-                                    : 'No file uploaded yet.'}
-                        </div>
-                        <p className="text-xs text-gray-500 mt-2">
-                            Current Status: {studentProject[reportKey] ? 'Submitted' : 'Not Submitted'}
-                        </p>
+  // STUDENT VIEW
+// STUDENT VIEW
+const renderStudentView = () => (
+    <div className="space-y-6">
+        <h3 className="text-xl font-semibold text-blue-600 border-b pb-2">
+            Student Submission: {reportType}
+        </h3>
+
+        {studentProject ? (
+            <div className="p-4 bg-blue-50 rounded-lg border border-blue-200 space-y-3">
+                <p className="font-semibold text-lg text-gray-800">
+                    Project: Final Year Project Management System
+                </p>
+                <p className="text-sm text-gray-700">
+                    Student: Iqbal
+                </p>
+                <p className="text-sm text-gray-700">
+                    Supervisor: NOOR FAZREEN BINTI BAKAR ({'fazreen@unimap.edu.my'})
+                </p>
+
+                <hr />
+
+                <div className="space-y-2">
+                    <label className="block text-sm font-medium text-gray-700">
+                        Upload Your {reportType} File (.pdf)
+                    </label>
+                    <input
+                        type="file"
+                        ref={fileInputRef}
+                        className="hidden"
+                        onChange={handleStudentFileChange}
+                    />
+                    <button
+                        className="mt-3 px-4 py-2 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition duration-150 shadow-md"
+                        type="button"
+                        onClick={() => fileInputRef.current && fileInputRef.current.click()}
+                    >
+                        Upload {reportType}
+                    </button>
+
+                    <div className="text-xs text-green-700 mt-1">
+                        {studentProject[reportKey] 
+                            ? `Uploaded: PROGRESS REPORT FYP.docx`
+                            : selectedFileName 
+                                ? `Selected: ${selectedFileName}` 
+                                : 'No file uploaded yet.'}
                     </div>
+
+                    <p className="text-xs text-gray-500 mt-2">
+                        Current Status: {studentProject[reportKey] ? 'Submitted' : 'Not Submitted'}
+                    </p>
                 </div>
-            ) : (
-                <p className="text-red-500 p-4 bg-red-100 rounded-lg">You do not have a project assigned yet. Cannot submit reports.</p>
-            )}
-        </div>
-    );
+
+                {/* Download Corrected Report — always visible. disabled if no file */}
+                <div className="mt-4">
+                    <a
+                        href={studentProject.correctedReportFile || "#"}
+                        download={studentProject.correctedReportFile ? true : undefined}
+                        target={studentProject.correctedReportFile ? "_blank" : undefined}
+                        rel="noopener noreferrer"
+                        onClick={(e) => { if (!studentProject.correctedReportFile) e.preventDefault(); }}
+                        className={`inline-block px-4 py-2 font-medium rounded-lg shadow-md transition duration-150 ${
+                            studentProject.correctedReportFile
+                                ? 'bg-amber-600 text-white hover:bg-amber-700'
+                                : 'bg-orange-300 text-gray-600 '
+                        }`}
+                    >
+                        Download Corrected Report
+                    </a>
+                </div>
+            </div>
+        ) : (
+            <p className="text-red-500 p-4 bg-red-100 rounded-lg">
+                You do not have a project assigned yet. Cannot submit reports.
+            </p>
+        )}
+    </div>
+);
 
     // SUPERVISOR VIEW
 // Inside renderSupervisorView in ReportSubmissionContent
